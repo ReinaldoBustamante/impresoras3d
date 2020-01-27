@@ -1,4 +1,5 @@
-#! C:\Users\spun\AppData\Local\Programs\Python\Python37\python.exe
+#! "C:\Users\spun\AppData\Local\Programs\Python\Python37\python.exe"
+
 from flask import Flask, render_template, request, url_for, redirect, flash
 #importo modulo mysql
 from flask_mysqldb import MySQL
@@ -191,4 +192,4 @@ def detalles_printer(id):
 
 #si existe se abre el servidor
 if __name__ == '__main__':
-    app.run(debug = True, port = 5040, host='0.0.0.0')
+    app.run(debug = True, port = 7500, host='0.0.0.0')

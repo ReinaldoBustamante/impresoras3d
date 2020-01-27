@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block body %}
+<section>
+    <div class="container ">
+        <a href="/" class= "btn-volver">Volver</a>
+    </div>
+    <div class="contenedor-detalles bg container sombra">
+        <h3>Detalles de impresora {{datos.1}}</h3>
+        <div>
+            <p class="letra-detalles">Tamaño boquilla: <span class="resultado"> {{datos.4}}</span></p>
+            <p class="letra-detalles">Tipo de Cama: <span class="resultado"> {{datos.5}}</span></p>
+            <p class="letra-detalles">Tipo de Filamento: <span class="resultado"> {{datos.6}}</span></p>
+            <p class="letra-detalles">Color de Filamento: <span class="resultado"> {{datos.7}}</span></p>
+        </div>
+    </div>
+
+ 
+    
+</section>
+
+
+
+
+{% endblock %}
