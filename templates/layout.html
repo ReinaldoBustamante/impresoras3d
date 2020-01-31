@@ -9,14 +9,15 @@
     <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min')}}">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <img src="{{ url_for('static', filename='IMG/logo.png')}}" alt="logo.png">
 </head>
 
 <body>
-    
-        {% block body %}
-        {% endblock %}
-    
+
+    {% block body %}
+    {% endblock %}
+
 
     <!--Scripts-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -28,6 +29,25 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script>
+        const btnDelete = document.querySelectorAll('.btn-confirm');
+        if (btnDelete) {
+            const btnArray = Array.from(btnDelete);
+            btnArray.forEach((btn) => {
+                btn.addEventListener('click', (e) => {
+                    if (!confirm('Estas Seguro?')) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        }
+    </script>
+
+
+    </head>
 </body>
 
 </html>

@@ -25,10 +25,10 @@
                 <thead>
                     <tr>
                         <td>Impresora</td>
-                        <td>ip local</td>
-                        <td>ip Publica</td>
-                        <td>Panel de control</td>
-                        <td>acciones</td>
+                        <td>Ip Publica</td>
+                        <td>Ip Local</td>
+                        <td>Panel De Control</td>
+                        <td>Acciones</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,12 +38,11 @@
                         <td>{{impresora.3}}</td>
                         <td>{{impresora.2}}</td>
                         <td>
-                            <a class="btn-enlace" href="/printer/{{ impresora.0 }}">Ingresar</a>
+                            <a class="btn-enlace" href="/panel/{{ impresora.0 }}">Ingresar Panel</a>
                         </td>
                         <td>
-                            <a href="/edit/{{impresora.0}}" class="btn-editar">Editar</a>
-                            <a href="/delete/{{impresora.0}}" class="btn-eliminar">Eliminar</a>
-                            <a href="/detalles/{{impresora.0}}" class="btn-detalles">Detalles</a>
+                            <a href="/edit/{{impresora.0}}" class="btn-editar center">Editar</a>
+                            <a href="/delete/{{impresora.0}}" class="btn-eliminar center btn-confirm">Eliminar</a>
                         </td>
                     </tr>
                     {% endfor %}

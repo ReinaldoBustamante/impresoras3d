@@ -112,18 +112,47 @@ tbody td{
     background-color: #FF0707;
     color:white;
 }
+.btn-abortar{
+    background-color:#FF2828;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 10px;
+}
+.btn-abortar:hover{
+    text-decoration: none;
+    cursor:pointer;
+    background-color: #FF0707;
+    color:white;
+}
 .btn-enlace{
     background-color:#2FA4E7;
     color: white;
     padding: 5px;
     text-decoration: none;
     border-radius: 10px;
+
 }
 .btn-enlace:hover{
     text-decoration: none;
     cursor:pointer;
     background-color: #0757B2;
     color:white;
+}
+.btn-ingresar{
+    background-color: light;
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+    margin-top: 5px;
+    
+
+}
+.btn-ingresar:hover{
+    text-decoration: none;
+    cursor:pointer;
+    background-color: lightgray;
+    color:black;
 }
 
 .btn-añadir{
@@ -156,7 +185,7 @@ tbody td{
 .btn-volver{
     background-color: #2FA4E7;
     color: white;
-    padding: 5px;
+    padding: 10px;
     text-decoration: none;
     border-radius: 10px;
     margin-right: 50px;
@@ -168,13 +197,19 @@ tbody td{
     color:white;
 }
 .btn-detalles{
-    background-color: orange;
-    color: white;
+    background-color: light;
+    color: black;
     padding: 5px;
     text-decoration: none;
-    border-radius: 10px;
-    margin-right: 50px;
+    margin-top: 7px;
 }
+.btn-detalles:hover{
+    text-decoration: none;
+    cursor:pointer;
+    background-color: lightgray;
+    color:black;
+}
+
 /* end botones*/
 
 /* estilos contenedor para editar*/
@@ -210,6 +245,43 @@ tbody td{
 .resultado{
     font-weight: 700;
     text-transform: uppercase;
-    margin-left: 5px;
+    margin-left: 5px;    
 }
 
+.center{
+    margin-right: 10px;
+    text-align: center;
+}
+.flex{
+    display:flex;
+    flex-direction: column;
+}
+
+.disp{
+    font-size: 80px;
+  
+}
+
+.st-card{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.pd-pa{
+    margin-top: 30px;
+}
+.pos-bot{
+    display: flex;
+    justify-content: space-between;
+}
+.card-header{
+    background-color: green;
+    color:white;
+}
+.mar-t{
+    margin-top: 2px;
+}
+.text-white{
+    color:white;
+    font-size: 25px;
+}
