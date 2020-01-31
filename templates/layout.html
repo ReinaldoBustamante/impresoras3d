@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min')}}">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+
     <img src="{{ url_for('static', filename='IMG/logo.png')}}" alt="logo.png">
 </head>
 
@@ -38,7 +40,7 @@
             const btnArray = Array.from(btnDelete);
             btnArray.forEach((btn) => {
                 btn.addEventListener('click', (e) => {
-                    if (!confirm('Estas Seguro?')) {
+                    if (!confirm('¿Estás Seguro?')) {
                         e.preventDefault();
                     }
                 });

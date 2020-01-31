@@ -8,12 +8,13 @@ import time
 import ctypes
 import webbrowser
 import sys
+
 def checkpname(mess):
     if b"no file" in mess:
-        return "No se esa imprimiendo"
+        return "No se está imprimiendo"
     elif b"Current file" in mess:
         text = mess.decode("utf-8")[1:-3].split("file: ",1)[1]
-        return "Se esta imprimiendo: " + text +"\n"
+        return "Se está imprimiendo: " + text +"\n"
     else:
         return "Impresora no responde"
 
@@ -26,6 +27,7 @@ def checkprint(mess):
         return "else"
 
 def readm27(mess):
+
         if b"Not SD printing" in mess:
             return "notp",0.0
         #elif b"T:" in mess :
@@ -95,16 +97,16 @@ def add_printer():
         cama = request.form['cama']
         filamento = request.form['filamento']
         color_filamento = request.form['color_filamento']
-        estado = "Impresora Disponible"
+        estado = "Impresora disponible"
         cur = mysql.connection.cursor()
         if name == '' or ip == '' or ip_publica == '':
-            flash('nombre,ip,ip publica necesarios')
+            flash('Estos campos son obligatorios: Nombre, Ip, Ip pública')
             return redirect(url_for('formulario'))
 
         else:
             cur.execute('INSERT INTO impresoras (name, ip, ip_publica, boquilla, cama, filamento, color_filamento, estado) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',(name, ip, ip_publica, boquilla, cama, filamento, color_filamento, estado))
             mysql.connection.commit()
-            flash('Impresora Agregada Correctamente')
+            flash('Impresora agregada con éxito')
             return redirect(url_for('Index'))
     
 
@@ -129,18 +131,18 @@ def panel(id):
         print("conectado")
         conected=True
     except:
-        flash("La Impresora esta apagada")
+        flash("La impresora está apagada")
     if conected:
         send=1
         while send:
-            print("M27")
-            tn.write(b"M27\n")
+            print("M27 C")
+            tn.write(b"M27 C\n")
             msj = tn.read_until(b'ok',timeout=10)
             print(msj)
             send=checkanswer(msj)
-        est,per=readm27(msj)
+        est=checkprint(msj)
         if est == "notp":
-            estado = "Impresora Disponible"
+            estado = "Impresora disponible"
             cur = mysql.connection.cursor()
             cur.execute("""
                 UPDATE impresoras
@@ -148,6 +150,8 @@ def panel(id):
                 WHERE id = %s
             """, (estado, id))
             mysql.connection.commit()
+            cur.execute('SELECT * FROM impresoras WHERE id = %s', [id])
+            data = cur.fetchall()
             #tn.close()
             return render_template('panel.html', datos = data[0])
         else:
@@ -159,6 +163,8 @@ def panel(id):
                 WHERE id = %s
             """, (estado, id))
             mysql.connection.commit()
+            cur.execute('SELECT * FROM impresoras WHERE id = %s', [id])
+            data = cur.fetchall()
             #tn.close()
             return render_template('panel.html', datos = data[0])
     return redirect(url_for('Index'))
@@ -177,18 +183,33 @@ def isabort(id):
         print("conectado")
         conected=True
     except:
-        flash("Hubo en error") 
-    if conected:
+        flash("Hubo un error") 
+    if (conected):
         send=1
         while send:
-            tn.write(b"M524\n")
+            tn.write(b"M27\n")
             msj = tn.read_until(b'ok',timeout=10)
             print(msj)          
             send=checkanswer(msj)
-        flash("impresion Abortada\n")
-        
+        est1,per=readm27(msj)      
+        send=1
+        while send:
+            tn.write(b"M27 C\n")
+            msj = tn.read_until(b'ok',timeout=10)
+            print(msj)          
+            send=checkanswer(msj)
+        est2=checkprint(msj)
+        if est1=="notp" and est2=="isp":
+            flash("No se puede abortar mientras este pausado")
+        else:
+            send=1
+            while send:
+                tn.write(b"M524\n")
+                msj = tn.read_until(b'ok',timeout=10)
+                print(msj)          
+                send=checkanswer(msj)
+            flash("Impresión abortada\n")
         #tn.close()
-
     return render_template('panel.html', datos=data[0])
 
 
@@ -218,7 +239,7 @@ def update_printer(id):
             WHERE id = %s
         """, (name, ip, ip_publica, boquilla, cama, filamento, color_filamento, id))
         mysql.connection.commit()
-        flash('Impresora Editada Correctamente')
+        flash('Impresora editada correctamente')
         return redirect(url_for('Index'))
 
 #ruta para eliminar una impresora
@@ -243,7 +264,7 @@ def progreso(id):
         print("conectado")
         conected=True
     except:
-        flash("La Impresora esta apagada")
+        flash("La impresora está apagada")
     if conected:
         send=1
         while send:
@@ -255,13 +276,13 @@ def progreso(id):
         est,per=readm27(msj)
         if est == "print":
             porcentaje = str(int(per))
-            flash("Porcentaje Impresion: "+porcentaje+"%\n")
+            flash("Porcentaje Impresión: "+porcentaje+"%\n")
             #tn.close()
             return render_template('panel.html', datos = data[0])
           
         else:
             #tn.close()
-            flash("No se esta imprimiendo")
+            flash("No se está imprimiendo")
             return render_template('panel.html', datos = data[0])
 
 @app.route('/pausar/<string:id>')
@@ -278,7 +299,7 @@ def pausar(id):
         print("conectado")
         conected=True
     except:
-        flash("La impresora no esta conectada") 
+        flash("La impresora no está conectada") 
     if conected:
         send=1        
         while send:
@@ -294,9 +315,9 @@ def pausar(id):
                 msj = tn.read_until(b'ok',timeout=10)
                 print(msj)          
                 send=checkanswer(msj)
-            flash("Impresion Pausada\n")
+            flash("Impresión pausada\n")
         elif est=="notp":   
-            flash("No se esta imprimiendo nada")
+            flash("No se está imprimiendo nada")
         else:
             flash("No se pudo conectar")
         
@@ -317,7 +338,7 @@ def resumir(id):
         print("conectado")
         conected=True
     except:
-        flash("La impresora no esta conectada") 
+        flash("La impresora no está conectada") 
     if conected:
         send=1
         while send:
@@ -333,9 +354,9 @@ def resumir(id):
                 msj = tn.read_until(b'ok',timeout=10)
                 print(msj)          
                 send=checkanswer(msj)
-            flash("Impresion Reanudada\n")
+            flash("Impresion reanudada\n")
         elif est=="notp":   
-            flash("No se esta imprimiendo")
+            flash("No se está imprimiendo")
         else:
             flash("No se pudo conectar")
         
@@ -356,7 +377,7 @@ def archivo(id):
         print("conectado")
         conected=True
     except:
-        flash("La impresora no esta conectada") 
+        flash("La impresora no está conectada") 
     if conected:
         send=1
         while send:

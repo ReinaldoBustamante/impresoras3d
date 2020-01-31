@@ -4,7 +4,7 @@
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 {% for message in messages%}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
+<div class="alert alert-success alert-dismissible fade show center bg-warning text-white" role="alert">
     {{message}}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -23,11 +23,11 @@
             <div class="campos-formulario">
                 <label>Nombre Impresora:</label>
                 <input type="text" name="name" placeholder="Anet A8" class="campo">
-                <label>Ip Local:</label>
+                <label>Ip local:</label>
                 <input type="text" name="ip_publica" placeholder="192.168.0.1" class="campo">
-                <label>Ip Publica:</label>
+                <label>Ip pública:</label>
                 <input type="text" name="ip" placeholder="192.168.0.1:80" class="campo">
-                <label>Boquilla:</label>
+                <label>boquilla:</label>
                 <input type="text" name="boquilla" placeholder="0.4" class="campo">
                 <label>Tipo de cama:</label>
                 <input type="text" name="cama" placeholder="Cinta" class="campo">
@@ -35,7 +35,7 @@
                 <input type="text" name="filamento" placeholder="PLA" class="campo">
                 <label>Color del filamento:</label>
                 <input type="text" name="color_filamento" placeholder="Rojo" class="campo">
-                <button type="submit" class="btn btn-añadir">añadir</button>
+                <button type="submit" class="btn btn-añadir">Añadir</button>
             </div>  
         </form>
     </div>

@@ -5,10 +5,10 @@
 {% if messages %}
 {% for message in messages%}
 <div class="alert alert-success alert-dismissible fade show center bg-warning text-white" role="alert">
-    {{message}}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
+  {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 {% endfor %}
 {% endif %}
@@ -20,29 +20,32 @@
     <a class="btn-abortar btn-confirm" id="abort" href="/isabort/{{ datos.0 }}">Abortar</a>
   </div>
 
-  <h1 class="disp">Panel de Control</h1>
-  <div class="st-card">
-    <div class="card center" style="width: 20rem;">
-      <div class="card-header" id ="colo">
-        {{datos.8}}
-      </div>
-      <ul class="list-group list-group-flush mar-t">
-        <a class="btn-ingresar sombra" target="_blank" href="http://{{datos.3}}">Ingresar a la Impresora</a>
-        <a class="btn-ingresar sombra" href="/progreso/{{ datos.0 }}">Ver Progreso</a> 
-        <a class="btn-ingresar sombra" href="/panel/{{ datos.0 }}">Estado</a>
-        <a class="btn-ingresar sombra" href="/pausar/{{ datos.0 }}">Pausar</a>  
-        <a class="btn-ingresar sombra" href="/resumir/{{ datos.0 }}">Resumir</a>  
-        <a class="btn-ingresar sombra" href="/archivo/{{ datos.0 }}">Ver Archivo</a> 
-        <button type="button" class="btn btn-detalles sombra btn-block " data-toggle="modal" data-target="#exampleModalCenter">
-          Detalles
-        </button>
-
-      </ul>
+</div>
+<h1 class="disp">Panel de control</h1>
+<div class="st-card">
+  <div class="card center" style="width: 20rem;">
+    <div class="card-header" id="colo">
+      {{datos.8}}
     </div>
-  </div>
-  
+    <ul class="list-group list-group-flush mar-t">
 
-  
+    
+      <a class="btn-ingresar sombra" target="_blank" href="http://{{datos.3}}">Ingresar a la impresora</a>
+      <a class="btn-ingresar sombra" href="/progreso/{{ datos.0 }}">Ver progreso</a>
+      <a class="btn-ingresar sombra" href="/panel/{{ datos.0 }}">Estado</a>
+      <a class="btn-ingresar sombra" href="/pausar/{{ datos.0 }}">Pausar</a>
+      <a class="btn-ingresar sombra" href="/resumir/{{ datos.0 }}">Reanudar</a>
+      <a class="btn-ingresar sombra" href="/archivo/{{ datos.0 }}">Archivo Actual</a>
+      <button type="button" class="btn btn-detalles sombra btn-block " data-toggle="modal"
+        data-target="#exampleModalCenter">
+        Detalles
+      </button>
+    </ul>
+  </div>
+</div>
+
+
+
 
 
 
@@ -53,21 +56,21 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Detalles Impresora: {{datos.1}}</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Detalles impresora: {{datos.1}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body flex">
-        <span>Ip Local: {{datos.3}}</span>
-        <span>Ip Publica: {{datos.2}}</span>
-        <span>Tamaño Boquilla: {{datos.4}}</span>
-        <span>Tipo Cama: {{datos.5}}</span>
-        <span>Tipo Filamento:{{datos.6}}</span>
-        <span>Color Filamento: {{datos.7}}</span>
+        <span>Ip local: {{datos.3}}</span>
+        <span>Ip pública: {{datos.2}}</span>
+        <span>Tamaño boquilla: {{datos.4}}</span>
+        <span>Tipo cama: {{datos.5}}</span>
+        <span>Tipo filamento:{{datos.6}}</span>
+        <span>Color filamento: {{datos.7}}</span>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

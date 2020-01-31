@@ -5,7 +5,7 @@
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 {% for message in messages%}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
+<div class="alert alert-success alert-dismissible fade show center bg-warning text-white" role="alert">
     {{message}}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -25,9 +25,9 @@
                 <thead>
                     <tr>
                         <td>Impresora</td>
-                        <td>Ip Publica</td>
-                        <td>Ip Local</td>
-                        <td>Panel De Control</td>
+                        <td>Ip pública</td>
+                        <td>Ip local</td>
+                        <td>Panel de control</td>
                         <td>Acciones</td>
                     </tr>
                 </thead>
@@ -38,7 +38,7 @@
                         <td>{{impresora.3}}</td>
                         <td>{{impresora.2}}</td>
                         <td>
-                            <a class="btn-enlace" href="/panel/{{ impresora.0 }}">Ingresar Panel</a>
+                            <a class="btn-enlace" href="/panel/{{ impresora.0 }}">Ingresar panel</a>
                         </td>
                         <td>
                             <a href="/edit/{{impresora.0}}" class="btn-editar center">Editar</a>
@@ -52,7 +52,7 @@
     </section>
     <section>
         <div class="container pd">
-            <a class="btn-gofm" href="/formulario">Agregar Impresora</a>
+            <a class="btn-gofm" href="/formulario">Agregar impresora</a>
         </div>
     </section>
 
